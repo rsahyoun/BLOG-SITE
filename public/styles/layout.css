@@ -1,0 +1,9 @@
+.container {
+    color: green;
+    border: 5px solid gold;
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+
+.red {background-color: #eb4d4b;}
