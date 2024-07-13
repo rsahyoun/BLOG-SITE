@@ -7,3 +7,23 @@
 
 
 .red {background-color: #eb4d4b;}
+
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.list-group-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-left: 5px;
+}
