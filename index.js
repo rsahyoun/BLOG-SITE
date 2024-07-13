@@ -10,8 +10,7 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
-let posts = [{ title: 'First Post', content: 'Lorem ipsum dolor sit amet...' },
-             { title: 'Second Post', content: 'Consectetur adipiscing elit...' }];
+let posts = [];
 let currentId = 1;
 
 app.get('/', (req, res) => {
@@ -33,6 +32,28 @@ app.post('/posts', (req, res) => {
     posts.push(newPost);
     res.status(201).json(newPost);
 });
+
+
+app.post('/posts/:id', (req, res) => {
+    const postId = parseInt(req.params.id);
+    const { title, content } = req.body;
+
+    const post = posts.find(post => post.id === postId);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found'});
+    }
+
+    post.title = title || post.title;
+    post.content = content || post.content;
+    res.json(post);
+});
+
+app.delete('/posts/:id', (req, res) => {
+    const postId = parseInt(req.params.id);
+    posts = posts.filter(post => post.id !== postId);
+    res.status(204).send();
+});
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
